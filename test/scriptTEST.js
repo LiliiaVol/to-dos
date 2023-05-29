@@ -11,11 +11,13 @@ function addNewElemenet() {
   const span = document.createElement("span");
 
   deleteButton.addEventListener("click", (event) => {
+    const idLi = event.target.parentElement.id;
     event.target.parentElement.remove();
     
-    console.log(event.target.parentElement.id);
-
-    // items = items.filter(item => item === obj.id)
+    const found = items.find(item => item.id === idLi)
+    items.splice(found, 1);
+    const myItemsStrAfter = JSON.stringify(items);
+    localStorage.setItem('items', myItemsStrAfter)
   });
 
 
