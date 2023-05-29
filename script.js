@@ -8,6 +8,8 @@ function addItem() {
   inputTextElement.value = "";
   const myItemsStrAfter = JSON.stringify(items);
   localStorage.setItem('items', myItemsStrAfter)
+
+  console.log(items)
 };
 
 function addNewElemenet() {
@@ -54,3 +56,13 @@ inputTextElement.addEventListener("keydown", (event) => {
 // const test = function(e) {
 //   e.target.parentElement.remove();
 // };
+
+// let i = 0;
+//     while (i < items.length) {
+//       if (items[i] === event.target.parentElement.textContent) {
+//         items.splice(i, 1);
+//         break;
+//       } else {
+//         ++i;
+//       }
+//     }
