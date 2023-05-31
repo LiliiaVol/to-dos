@@ -1,5 +1,5 @@
 const ul = document.querySelector('ul');
-const items = [];
+let items = [];
 const inputTextElement = document.querySelector('.textInput');
 const wrapper = document.querySelector('.wrapper');
 const random = () => Math.floor(Math.random() * 10000);
@@ -13,18 +13,23 @@ function addNewElemenet() {
   deleteButton.addEventListener("click", (event) => {
     const idLi = event.target.parentElement.id;
     event.target.parentElement.remove();
-    
-    const found = items.find(item => item.id === idLi)
-    items.splice(found, 1);
+    items = items.filter(item => item.id.toString() !== idLi)
     const myItemsStrAfter = JSON.stringify(items);
     localStorage.setItem('items', myItemsStrAfter)
   });
 
 
   viewButton.addEventListener("click", (event) => {
-    const item = event.target.parentElement;
-    localStorage.setItem('item', item);
-    window.location='view.html';
+    // const idLi = event.target.parentElement.id;
+    // const item = items.find(item => item.id.toString() === idLi)
+    // console.log(item)
+    // // localStorage.setItem('item', found);
+
+    // // window.location=`view.html?id=${idLi}`;
+    // window.open(`view.html?id=${idLi}`, '_blank');
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then(response => response.json())
+      .then(json => console.log(json))
   })
 
   let inputTextElement = document.querySelector('.textInput');
