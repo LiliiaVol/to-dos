@@ -101,7 +101,7 @@ ul {
   margin: 15px 0 15px 0;
 }
 
-.list-items-button {
+.list-items-button-view {
   margin-left: 10px;
   background-color: rgb(151, 239, 240);
   border: 3px solid rgb(183, 232, 233);
@@ -120,7 +120,16 @@ ul {
   color: black;
   font-weight: lighter;
   border-radius: 5px;
+}
 
+.list-items-button-edit {
+  background-color: rgb(96, 236, 91);
+  border: 3px solid rgb(160, 226, 107);
+  margin-left: 10px;
+  font-family: Georgia, Times, serif;
+  color: black;
+  font-weight: lighter;
+  border-radius: 5px;
 }
 
 /* SCROOLBAR */

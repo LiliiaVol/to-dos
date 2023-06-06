@@ -5,9 +5,18 @@ const wrapper = document.querySelector('.wrapper');
 const random = () => Math.floor(Math.random() * 10000);
 
 function addNewElemenet() {
-  const li = document.createElement('li');
+  let inputTextElement = document.querySelector('.textInput');
+  
+  let formValidation = () => {
+    if (inputTextElement.value === "") {
+      inputTextElement.placeholder = "Post cannot be blank";
+      console.log("failure");
+    } else {
+      console.log("successs");
+      const li = document.createElement('li');
   const deleteButton = document.createElement('button');
   const viewButton = document.createElement('button');
+  const editButton = document.createElement('button');
   const span = document.createElement("span");
 
   deleteButton.addEventListener("click", (event) => {
@@ -33,16 +42,30 @@ function addNewElemenet() {
   //     .then(json => console.log(json))
   })
 
-  let inputTextElement = document.querySelector('.textInput');
+  editButton.addEventListener("click", (event) => {
+    const idLi = event.target.parentElement.id;
+    
+    inputTextElement.value = document.getElementById(idLi).value=
+    li.getElementsByTagName('span')[0].textContent;
+
+    event.target.parentElement.remove();
+    items = items.filter(item => item.id.toString() !== idLi)
+    const myItemsStrAfter = JSON.stringify(items);
+    localStorage.setItem('items', myItemsStrAfter)
+  })
+  
   span.innerHTML = inputTextElement.value;
   deleteButton.innerText = 'delete';
   viewButton.innerHTML = 'view';
-  viewButton.classList.add('list-items-button');
+  editButton.innerHTML = 'edit';
+  viewButton.classList.add('list-items-button-view');
   deleteButton.classList.add('list-items-button-delete');
+  editButton.classList.add('list-items-button-edit');
 
   li.append(span)
   li.append(deleteButton);
   li.append(viewButton);
+  li.append(editButton);
   li.classList.add('list-items');
   ul.append(li);
 
@@ -67,6 +90,11 @@ function addNewElemenet() {
     console.log(items)
   };
   addItem();
+  inputTextElement.placeholder = "Please enter text";
+    }
+  };
+
+  formValidation();
   
 };
 
