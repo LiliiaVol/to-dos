@@ -153,3 +153,11 @@ ul {
 ::-webkit-scrollbar-thumb:hover {
   background:  rgb(253, 217, 151); 
 }
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 3px solid green;
+}

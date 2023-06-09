@@ -43,15 +43,22 @@ function addNewElemenet() {
   })
 
   editButton.addEventListener("click", (event) => {
-    const idLi = event.target.parentElement.id;
-    
-    inputTextElement.value = document.getElementById(idLi).value=
-    li.getElementsByTagName('span')[0].textContent;
 
-    event.target.parentElement.remove();
-    items = items.filter(item => item.id.toString() !== idLi)
-    const myItemsStrAfter = JSON.stringify(items);
-    localStorage.setItem('items', myItemsStrAfter)
+    const idLi = event.target.parentElement.id;
+    const item = items.find(item => item.id.toString() === idLi)
+    const itemForLocalStorage = JSON.stringify(item)
+    localStorage.setItem('item', itemForLocalStorage);
+    window.open(`edit.html?id=${idLi}`, '_blank');
+
+  //   const idLi = event.target.parentElement.id;
+    
+  //   inputTextElement.value = document.getElementById(idLi).value=
+  //   li.getElementsByTagName('span')[0].textContent;
+
+  //   event.target.parentElement.remove();
+  //   items = items.filter(item => item.id.toString() !== idLi)
+  //   const myItemsStrAfter = JSON.stringify(items);
+  //   localStorage.setItem('items', myItemsStrAfter)
   })
   
   span.innerHTML = inputTextElement.value;
