@@ -12,12 +12,15 @@ function addNewElemenet() {
       inputTextElement.placeholder = "Post cannot be blank";
       console.log("failure");
     } else {
-      console.log("successs");
+      // console.log("successs");
       const li = document.createElement('li');
   const deleteButton = document.createElement('button');
   const viewButton = document.createElement('button');
   const editButton = document.createElement('button');
+  const sendButton = document.createElement('button');
+  const getButton = document.createElement('button');
   const span = document.createElement("span");
+
 
   deleteButton.addEventListener("click", (event) => {
     const idLi = event.target.parentElement.id;
@@ -58,11 +61,44 @@ function addNewElemenet() {
     //   .then(response => response.json())
     //   .then(json => console.log(json))
   })
+
+  sendButton.addEventListener("click", (event) => {
+
+    const idLi = event.target.parentElement.id;
+    
+    inputTextElement.value = document.getElementById(idLi).value=
+    li.getElementsByTagName('span')[0].textContent;
+
+    // event.target.parentElement.remove();
+    const item = items.find(item => item.id.toString() === idLi)
+    const myItemsStrAfter = JSON.stringify(item);
+    console.log(myItemsStrAfter)
+
+    fetch(`https://jsonplaceholder.typicode.com/posts?id=${idLi}`, {
+      method: 'POST',
+       body: myItemsStrAfter,
+      headers: {
+       'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+  })
+
+  getButton.addEventListener("click", (event) => {
+    const idLi = event.target.parentElement.id;
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/1`)
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  })
   
   span.innerHTML = inputTextElement.value;
   deleteButton.innerText = 'delete';
   viewButton.innerHTML = 'view';
   editButton.innerHTML = 'edit';
+  sendButton.innerHTML = 'send';
+  getButton.innerHTML = 'get';
   viewButton.classList.add('list-items-button-view');
   deleteButton.classList.add('list-items-button-delete');
   editButton.classList.add('list-items-button-edit');
@@ -71,6 +107,8 @@ function addNewElemenet() {
   li.append(deleteButton);
   li.append(viewButton);
   li.append(editButton);
+  li.append(sendButton);
+  li.append(getButton);
   li.classList.add('list-items');
   ul.append(li);
 
@@ -92,7 +130,7 @@ function addNewElemenet() {
     inputTextElement.value = "";
     const myItemsStrAfter = JSON.stringify(items);
     localStorage.setItem('items', myItemsStrAfter)
-    console.log(items)
+    // console.log(items)
   };
   addItem();
   inputTextElement.placeholder = "Please enter text";

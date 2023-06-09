@@ -9,7 +9,8 @@ function addItemToInput() {
 
 
 
-        event.window.open(`index.html?id=${idLi}`, '_blank');
+        window.history.back();
+        // (`index.html?id=${idLi}`, '_blank');
     })
 };
 addItemToInput();
